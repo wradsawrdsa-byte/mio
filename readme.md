@@ -1,3 +1,5 @@
+5 months in development, cracked in 5 days
+
 to use the crack just put both `mio.jar` and `mio-loader.jar` in the mods folder along with fabric api and run.
 
 ## credits
