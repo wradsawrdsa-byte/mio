@@ -224,7 +224,7 @@ public final class SettingBuilder {
     }
 
     public static void read() {
-        try (final DataInputStream dis = new DataInputStream(new FileInputStream("C:\\Users\\Nic\\Downloads\\Mio 2.2 Crack\\mio-main\\mio-main\\src\\main\\resources\\mio\\settings.bin"))) {
+        try (final DataInputStream dis = new DataInputStream(Objects.requireNonNull(Loader.class.getClassLoader().getResourceAsStream("mio/settings.bin")))) {
             while (dis.available() != 0) {
                 final long mod = dis.readLong();
                 final String name = dis.readUTF();
