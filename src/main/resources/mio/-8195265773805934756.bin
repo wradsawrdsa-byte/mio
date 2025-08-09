@@ -1,0 +1,11 @@
+// utils
+#define bloom(color, weight) (vec4(color.rgb, color.a * weight))
+
+bool decorator(int dots, int radius) {
+    if (dots == 0) return false;
+    if (dots == 1) {
+        return int(gl_FragCoord.x) - (radius * int(gl_FragCoord.x / radius)) == 0
+            && int(gl_FragCoord.y) - (radius * int(gl_FragCoord.y / radius)) == 0;
+    }
+    return int(gl_FragCoord.x) % radius == 0 || int(gl_FragCoord.y) % radius == 0;
+}

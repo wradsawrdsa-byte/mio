@@ -1,0 +1,35 @@
+#version 330
+
+uniform sampler2D InSampler;
+
+in vec2 texCoord;
+in vec2 oneTexel;
+
+uniform float width;
+uniform float sigma;
+uniform float bloom;
+uniform float modulate;
+uniform float opacity;
+uniform vec2 direction;
+
+out vec4 fragColor;
+
+float pdf(float x, float sigma) {
+    return exp(-(x * x) / (2.0 * sigma * sigma));
+}
+
+void main() {
+    int radius = int(width);
+    float totalWeight = pdf(0.0, sigma);
+    vec4 blurred = texture(InSampler, texCoord) * totalWeight;
+    for (int j = 1; j <= radius; ++j) {
+        float weight = pdf(float(j), sigma);
+        vec2 offset = oneTexel * float(j) * direction;
+        blurred += texture(InSampler, texCoord + offset) * weight;
+        blurred += texture(InSampler, texCoord - offset) * weight;
+        totalWeight += 2.0 * weight;
+    }
+    blurred /= totalWeight;
+    float fac = max(blurred.a * modulate, 1.0);
+    fragColor = vec4(min(blurred.rgb * fac, 1.0), min(blurred.a * bloom, opacity));
+}

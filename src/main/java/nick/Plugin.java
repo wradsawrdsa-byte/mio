@@ -8,18 +8,18 @@ public final class Plugin implements PreLaunchEntrypoint {
     static {
         try {
             final ClassLoader loader = Plugin.class.getClassLoader();
-            final Field f1 = loader.getClass().getDeclaredField("delegate");
-            f1.setAccessible(true);
-            final Object delegate = f1.get(loader);
-            final Field f2 = loader.getClass().getDeclaredField("originalLoader");
-            f2.setAccessible(true);
-            final ClassLoader original = (ClassLoader) f2.get(loader);
-            final Field f3 = delegate.getClass().getDeclaredField("parentClassLoader");
-            f3.setAccessible(true);
-            final ClassLoader parent = (ClassLoader) f3.get(delegate);
+            final Field _delegate = loader.getClass().getDeclaredField("delegate");
+            _delegate.setAccessible(true);
+            final Object delegate = _delegate.get(loader);
+            final Field _original = loader.getClass().getDeclaredField("originalLoader");
+            _original.setAccessible(true);
+            final ClassLoader original = (ClassLoader) _original.get(loader);
+            final Field _parent = delegate.getClass().getDeclaredField("parentClassLoader");
+            _parent.setAccessible(true);
+            final ClassLoader parent = (ClassLoader) _parent.get(delegate);
             final MioClassLoader mio = new MioClassLoader(parent, original);
-            f2.set(loader, mio);
-            f3.set(delegate, mio);
+            _original.set(loader, mio);
+            _parent.set(delegate, mio);
         } catch (Throwable _t) {
             _t.printStackTrace(System.err);
         }

@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-// https://mioclient.me/files/mioloader.jar
 public final class Globals {
     private static final Logger logger = LogManager.getLogger("turboloader");
 

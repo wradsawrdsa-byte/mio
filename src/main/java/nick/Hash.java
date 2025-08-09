@@ -42,6 +42,7 @@ public class Hash  {
                 l *= -4132994306676758123L;
             }
         }
+
         l ^= l >>> 47;
         l *= -4132994306676758123L;
         l ^= l >>> 47;
@@ -49,6 +50,6 @@ public class Hash  {
     }
 
     public static long hash(byte[] data) {
-        return hash(data, data.length, -512093083);
+        return hash(data, data.length, 0xE17A1465);
     }
 }
