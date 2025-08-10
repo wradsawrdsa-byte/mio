@@ -999,6 +999,7 @@ accessible method net/minecraft/class_9346 comp_3564 ()Lnet/minecraft/class_9346
 accessible class net/minecraft/class_9346$class_10688
 accessible method net/minecraft/class_9346$class_10688 comp_3568 ()Lnet/minecraft/class_10726;
 accessible class net/minecraft/class_10726
+accessible class net/minecraft/class_355$class_9018
 accessible method net/minecraft/class_10726 comp_3627 ()Lnet/minecraft/class_2960;
 accessible class net/minecraft/class_5354
 accessible method net/minecraft/class_5354 method_29511 ()Z
